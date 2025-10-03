@@ -6,6 +6,10 @@ service: temp
 plugins: 
   - serverless-offline
 
+# custom:
+#   serverless-offline:
+#     noPrependStageInUrl: true
+    
 provider:
   name: aws
   runtime: nodejs20.x
@@ -14,44 +18,44 @@ provider:
   # domain: api.example.com
 
 functions:
-  hello:
-    handler: handler.hello
+  app:
+    handler: index.handler
     events:
-      - httpApi:
-          path: /
-          method: get
+      - http: 'ANY /items/{proxy+}'
 
-  createItem:
-    handler: src/create.createItem
-    events:
-      - httpApi:
-          path: /items
-          method: post
 
-  getItem:
-    handler: src/read.getItem
-    events:
-      - httpApi:
-          path: /items/{id} 
-          method: get
+  # createItem:
+  #   handler: index.handler
+  #   events:
+  #     - httpApi:
+  #         path: /items
+  #         method: post
 
-  getItems:
-    handler: src/read.getItems
-    events:
-      - httpApi:
-          path: /items
-          method: get
+  # getItem:
+  #   handler: index.handler
+  #   events:
+  #     - httpApi:
+  #         path: /items/{id}
+  #         method: get
 
-  updateItem:
-    handler: src/update.updateItem
-    events:
-      - httpApi:
-          path: /items/{id}
-          method: put
+  # getItems:
+  #   handler: index.handler
+  #   events:
+  #     - httpApi:
+  #         path: /items
+  #         method: get
 
-  deleteItem:
-    handler: src/delete.deleteItem
-    events:
-      - httpApi:
-          path: /items/{id}
-          method: delete
+  # updateItem:
+  #   handler: index.handler
+  #   events:
+  #     - httpApi:
+  #         path: /items/{id}
+  #         method: put
+
+  # deleteItem:
+  #   handler: index.handler
+  #   events:
+  #     - httpApi:
+  #         path: /items/{id}
+  #         method: delete
+
