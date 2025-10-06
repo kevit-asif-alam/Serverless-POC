@@ -9,8 +9,8 @@ app.get('/', function (req, res) {
 
 app.get('/items', async (req, res) => {
     res.send('List of items');
-    // const items = JSON.parse(fs.readFileSync(path.join(__dirname, 'items.json')));
-    // res.json(items);
+    const items = JSON.parse(fs.readFileSync(path.join(__dirname, 'items.json')));
+    res.json(items);
 });
 
 app.get('/items/:id', function (req, res) {
